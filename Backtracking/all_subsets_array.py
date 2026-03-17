@@ -1,18 +1,18 @@
-def subsets(arr, i, curr):
-    if i == len(arr):
-        print(curr)
-        return
+def subsets(nums):
+    result = []
 
-    curr.append(arr[i])
-    subsets(arr, i+1, curr)
-    curr.pop()
+    def backtrack(start, path):
+        result.append(path[:])
 
-    subsets(arr, i+1, curr)
+        for i in range(start, len(nums)):
+            path.append(nums[i])
+            backtrack(i+1, path)
+            path.pop()
+
+    backtrack(0, [])
+    return result
 
 
-n = int(input())
 arr = list(map(int, input().split()))
-curr = []
-i = 0
 
-subsets(arr, i, curr)
+print(subsets(arr))
