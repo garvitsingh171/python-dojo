@@ -3,12 +3,15 @@ def permutation(nums):
     used = [False] * len(nums)
 
     def backtrack(path):
-        if len(path) == len(nums) and path[:] not in result:
+        if len(path) == len(nums):
             result.append(path[:])
             return
 
         for i in range(len(nums)):
             if used[i]:
+                continue
+
+            if nums[i] == nums[i-1] and not used[i-1]:
                 continue
 
             path.append(nums[i])
@@ -24,5 +27,6 @@ def permutation(nums):
 
 
 arr = list(map(int, input().split()))
+arr.sort()
 
 print(permutation(arr))
