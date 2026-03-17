@@ -1,3 +1,3 @@
-hello = [1]
-
-print(hello * 3)
+hello = ""
+hello = hello + "s"
+print(hello + 's')
