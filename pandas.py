@@ -1,1 +1,3 @@
-print(len('string'))
+hello = [1]
+
+print(hello * 3)
