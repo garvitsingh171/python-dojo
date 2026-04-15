@@ -1,4 +1,5 @@
 def target_sum(nums, target):
+    memo = {}
 
     def backtrack(i, curr_sum):
         if i == len(nums):
@@ -7,11 +8,15 @@ def target_sum(nums, target):
             else:
                 return 0
 
+        if (i, curr_sum) in memo:
+            return memo[(i, curr_sum)]
+
         plus = backtrack(i + 1, curr_sum + nums[i])
 
         minus = backtrack(i + 1, curr_sum - nums[i])
 
-        return plus + minus
+        memo[(i, curr_sum)] = plus + minus
+        return memo[(i, curr_sum)]
 
     return backtrack(0, 0)
 
