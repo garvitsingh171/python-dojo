@@ -8,13 +8,13 @@ def longest_palindrome(s):
         return s[l+1:r]
 
     for i in range(len(s)):
-        temp1 = expand(i, i)
-        temp2 = expand(i, i+1)
+        if len(s) % 2 != 0:
+            temp = expand(i, i)
+        else:
+            temp = expand(i, i+1)
 
-        if len(temp1) > len(res):
-            res = temp1
-        if len(temp2) > len(res):
-            res = temp2
+        if len(temp) > len(res):
+            res = temp
 
     return res
 
