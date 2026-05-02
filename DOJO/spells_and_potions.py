@@ -1,18 +1,23 @@
 def successfulPairs(spells, potions, success):
-    spells_with_index = sorted([(spell, i) for i, spell in enumerate(spells)])
-
     potions.sort()
-    n = len(potions)
+    m = len(potions)
+    res = []
 
-    right = n - 1
+    for spell in spells:
+        left = 0
+        right = m - 1
+        ans = m
 
-    res = [0] * len(spells)
+        while left <= right:
+            mid = (left + right) // 2
 
-    for spell, idx in spells_with_index:
-        while right >= 0 and spell * potions[right] >= success:
-            right -= 1
+            if spell * potions[mid] >= success:
+                ans = mid
+                right = mid - 1
+            else:
+                left = mid + 1
 
-        res[idx] = n - (right + 1)
+        res.append(m - ans)
 
     return res
 
